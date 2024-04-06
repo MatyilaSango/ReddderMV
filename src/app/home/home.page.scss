@@ -1,0 +1,8 @@
+.home-posts-view{
+  height: calc(100% - 120px);
+  overflow-y: scroll;
+}
+
+.home-posts-view::-webkit-scrollbar{
+  display: none;
+}

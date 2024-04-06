@@ -1,0 +1,6 @@
+<ion-card>
+  <div>
+    <video class="w-full" *ngIf="type === 'video'" alt="" [src]="link" controls></video>
+    <img class="w-full" *ngIf="type === 'image'" alt="" [src]="link" />
+  </div>
+</ion-card>

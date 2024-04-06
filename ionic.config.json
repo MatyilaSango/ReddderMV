@@ -1,0 +1,7 @@
+{
+  "name": "ReddderMV",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
