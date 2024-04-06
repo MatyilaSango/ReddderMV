@@ -8,4 +8,5 @@ export interface Post {
     link: string
     type: string
     likes: number
+    title: string
 }
