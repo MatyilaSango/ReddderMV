@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonCard, IonList, IonItem, IonSelect, IonSelectOption } from "@ionic/angular/standalone";
 import { Store } from '@ngrx/store';
@@ -28,6 +28,7 @@ export class SearchComponent {
 
   async handleSubmit(e: Event){
     const data = await this.searchService.getData(this.name, this.type)
+    localStorage.setItem("AppState", JSON.stringify(data))
     this.store.dispatch(storeSearchAccount(data))
   }
 }

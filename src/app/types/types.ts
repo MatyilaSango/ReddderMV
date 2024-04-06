@@ -7,4 +7,5 @@ export interface SearchAccountState {
 export interface Post {
     link: string
     type: string
+    likes: number
 }

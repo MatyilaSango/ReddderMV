@@ -58,17 +58,17 @@ export class SearchService {
   private formatData = (data: any) => {
     if (data.is_video) {
       if (!this.userData.includes(data.media?.reddit_video?.fallback_url) && data.media?.reddit_video?.fallback_url !== undefined) {
-        this.userData = [...this.userData, {link: data.media?.reddit_video?.fallback_url, type: MEDIA.video}];
+        this.userData = [...this.userData, {link: data.media?.reddit_video?.fallback_url, type: MEDIA.video, likes: data?.ups}];
       }
     } else {
       if (this.isMedia(data.url)) {
         if (data.url.includes("redgifs") || data.url.includes("gifv")) {
           if (!this.userData.includes(data.preview?.reddit_video_preview?.fallback_url) && data.preview?.reddit_video_preview?.fallback_url !== undefined) {
-            this.userData = [...this.userData, {link: data.preview?.reddit_video_preview?.fallback_url, type: MEDIA.video}];
+            this.userData = [...this.userData, {link: data.preview?.reddit_video_preview?.fallback_url, type: MEDIA.video, likes: data?.ups}];
           }
         } else {
           if (!this.userData.includes(data.url) && data.url !== undefined) {
-            this.userData = [...this.userData, {link: data.url, type: MEDIA.Image}]
+            this.userData = [...this.userData, {link: data.url, type: MEDIA.Image, likes: data?.ups}]
           }
         }
       }

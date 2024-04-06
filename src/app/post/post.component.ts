@@ -12,6 +12,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 export class PostComponent {
   @Input() link!: string;
   @Input() type!: string;
+  @Input() likes!: number;
 
   constructor() {   
   }
