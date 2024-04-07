@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IonIcon } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
-import { bookmark, thumbsDown, thumbsUp, playCircle } from "ionicons/icons"
+import { bookmark, thumbsDown, thumbsUp, playCircle, volumeHigh, volumeMute } from "ionicons/icons"
 
 @Component({
   selector: 'app-action-button',
@@ -16,7 +16,7 @@ export class ActionButtonComponent {
   @Input() iconSize!: string;
 
   constructor() { 
-    addIcons({thumbsUp, thumbsDown, bookmark, playCircle})
+    addIcons({thumbsUp, thumbsDown, bookmark, playCircle, volumeHigh, volumeMute})
   }
 
 }

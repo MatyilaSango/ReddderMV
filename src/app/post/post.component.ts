@@ -9,6 +9,7 @@ import { savePost } from '../states/bookmark/bookmark.action';
 import { selectBookmarkPosts } from '../states/bookmark/bookmark.selector';
 import { personCircle } from "ionicons/icons"
 import { addIcons } from 'ionicons';
+import { VOLUME_ICON_NAMES } from '../enums/enums';
 
 @Component({
   selector: 'app-post',
@@ -23,11 +24,13 @@ export class PostComponent {
   playing: boolean;
   videoElement!: HTMLVideoElement;
   isMuted: boolean;
+  volumeIconName: string;
 
   constructor(private store: Store<AppState>) {  
     addIcons({personCircle}) 
     this.playing = false;
     this.isMuted = false;
+    this.volumeIconName = "volume-high"
   }
 
   handleVideoOnLoad(e: Event){
@@ -43,6 +46,7 @@ export class PostComponent {
   handleVideoAudioMute(){
     this.videoElement.muted = !this.videoElement.muted
     this.isMuted = this.videoElement.muted
+    this.volumeIconName = this.isMuted ? VOLUME_ICON_NAMES.VolumeMute : VOLUME_ICON_NAMES.VolumeHigh
   }
 
   bookmarkPost(){
