@@ -6,7 +6,7 @@ export interface SearchAccountState {
 
 export interface Post {
     link: string
-    type: string
+    _type: string
     ups: number
     downs: number
     title: string

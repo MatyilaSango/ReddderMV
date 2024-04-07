@@ -1,9 +1,7 @@
 <div class="h-screen">
   <app-header />
   <div class="page-view">
-    <app-search />
     <app-post *ngFor="let post$ of posts$ | async" [post]="post$" />
   </div>
   <app-tabs class="absolute bottom-0 h-fit w-full z-50" />
 </div>
-

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
-import { MEDIA } from '../emums/enums';
+import { MEDIA } from '../enums/enums';
 import { Post } from '../types/types';
 
 @Injectable({
@@ -60,7 +60,7 @@ export class SearchService {
       if (!this.userData.includes(data.media?.reddit_video?.fallback_url) && data.media?.reddit_video?.fallback_url !== undefined) {
         const postData: Post = {
           link: data.media?.reddit_video?.fallback_url, 
-          type: MEDIA.video, 
+          _type: MEDIA.video, 
           ups: data?.ups, 
           title: data?.title,
           downs: data?.downs,
@@ -74,7 +74,7 @@ export class SearchService {
           if (!this.userData.includes(data.preview?.reddit_video_preview?.fallback_url) && data.preview?.reddit_video_preview?.fallback_url !== undefined) {
             const postData: Post = {
               link: data.preview?.reddit_video_preview?.fallback_url, 
-              type: MEDIA.video, 
+              _type: MEDIA.video, 
               ups: data?.ups, 
               title: data?.title,
               downs: data?.downs,
@@ -86,7 +86,7 @@ export class SearchService {
           if (!this.userData.includes(data.url) && data.url !== undefined) {
             const postData: Post = {
               link: data.url, 
-              type: MEDIA.Image, 
+              _type: MEDIA.Image, 
               ups: data?.ups, 
               title: data?.title,
               downs: data?.downs,

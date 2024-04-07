@@ -9,6 +9,7 @@ import { environment } from './environments/environment';
 import { provideState, provideStore } from '@ngrx/store';
 import { searchAccountReducer } from './app/states/search/search.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { bookmarkPostReducer } from './app/states/bookmark/bookmark.reducer';
 
 if (environment.production) {
   enableProdMode();
@@ -21,6 +22,7 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),
     provideStore(),
     provideState({ name: 'searchAccount', reducer: searchAccountReducer }),
+    provideState({ name: 'bookmarks', reducer: bookmarkPostReducer }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
 ],
 });

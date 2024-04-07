@@ -9,16 +9,18 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { PostComponent } from '../post/post.component';
 import { HeaderComponent } from "../header/header.component";
 import { Post } from '../types/types';
+import { TabsComponent } from "../tabs/tabs.component";
 
 @Component({
     selector: 'app-home',
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
     standalone: true,
-    imports: [IonCard, IonHeader, IonToolbar, IonTitle, IonContent, SearchComponent, AsyncPipe, PostComponent, CommonModule, HeaderComponent]
+    imports: [IonCard, IonHeader, IonToolbar, IonTitle, IonContent, SearchComponent, AsyncPipe, PostComponent, CommonModule, HeaderComponent, TabsComponent]
 })
 export class HomePage {
   posts$: Observable<Post[]>
+  
   constructor(private store: Store<AppState>) {
     this.posts$ = this.store.select(selectData)
   }
