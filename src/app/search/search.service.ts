@@ -58,19 +58,40 @@ export class SearchService {
   private formatData = (data: any) => {
     if (data.is_video) {
       if (!this.userData.includes(data.media?.reddit_video?.fallback_url) && data.media?.reddit_video?.fallback_url !== undefined) {
-        const postData = {link: data.media?.reddit_video?.fallback_url, type: MEDIA.video, likes: data?.ups, title: data?.title}
+        const postData: Post = {
+          link: data.media?.reddit_video?.fallback_url, 
+          type: MEDIA.video, 
+          ups: data?.ups, 
+          title: data?.title,
+          downs: data?.downs,
+          author: data?.author
+        }
         this.userData = [...this.userData, postData];
       }
     } else {
       if (this.isMedia(data.url)) {
         if (data.url.includes("redgifs") || data.url.includes("gifv")) {
           if (!this.userData.includes(data.preview?.reddit_video_preview?.fallback_url) && data.preview?.reddit_video_preview?.fallback_url !== undefined) {
-            const postData = {link: data.preview?.reddit_video_preview?.fallback_url, type: MEDIA.video, likes: data?.ups, title: data?.title}
+            const postData: Post = {
+              link: data.preview?.reddit_video_preview?.fallback_url, 
+              type: MEDIA.video, 
+              ups: data?.ups, 
+              title: data?.title,
+              downs: data?.downs,
+              author: data?.author
+            }
             this.userData = [...this.userData, postData];
           }
         } else {
           if (!this.userData.includes(data.url) && data.url !== undefined) {
-            const postData = {link: data.url, type: MEDIA.Image, likes: data?.ups, title: data?.title}
+            const postData: Post = {
+              link: data.url, 
+              type: MEDIA.Image, 
+              ups: data?.ups, 
+              title: data?.title,
+              downs: data?.downs,
+              author: data?.author
+            }
             this.userData = [...this.userData, postData]
           }
         }

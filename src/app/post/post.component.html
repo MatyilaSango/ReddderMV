@@ -1,25 +1,28 @@
 <ion-card class="relative">
-  <video (loadeddata)="handleVideoOnLoad($event)" (click)="handleVideoControls()" class="w-full" *ngIf="type === 'video'" alt="" [src]="link">
+  <video (loadeddata)="handleVideoOnLoad($event)" (click)="handleVideoControls()" class="w-full" *ngIf="post.type === 'video'" alt="" [src]="post.link">
   </video>
-  <img class="w-full" *ngIf="type === 'image'" alt="" [src]="link" />
+  <img class="w-full" *ngIf="post.type === 'image'" alt="" [src]="post.link" />
   <div class="absolute bottom-0 left-0 w-full">
     <div class="w-full flex justify-end p-2">
-      <div class="w-8">
-        <div class="w-full flex justify-center">
-          <img class="h-5" alt="" src="../../assets/icon/like.svg" />
-        </div>
-        <div class="text-white w-full flex justify-center">
-          {{likes}}
-        </div>
+      <div class="w-8 grid grid-cols-1 gap-2">
+        <app-action-button [text]="post.ups" imgSrc="../../assets/icon/ups.svg" />
+        <app-action-button [text]="post.downs" imgSrc="../../assets/icon/downs.svg" />
+        <app-action-button imgSrc="../../assets/icon/bookmark.svg" />
       </div>
     </div>
     <div class="w-full py-3 bg-gradient-to-t from-black to-transparent p-2">
-      <ion-text class="text-white">
-        {{title}}
+      <div>
+        <ion-text class="text-white font-bold text-base">
+          &#64;{{post.author}}
+        </ion-text>
+      </div>
+      <ion-text >
+        {{post.title}}
       </ion-text>
     </div>
   </div>
-  <div *ngIf="type === 'video'" (click)="handleVideoControls()" [class.playing]="playing" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14">
+  <div *ngIf="post.type === 'video'" (click)="handleVideoControls()" [class.playing]="playing" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14">
     <img alt="" src="../../assets/icon/play.svg" class="w-full" />
   </div>
+  <app-action-button *ngIf="post.type === 'video'" (click)="handleVideoAudioMute()" [class.muted]="isMuted" class="absolute top-2 left-2 notMuted size-5" />
 </ion-card>

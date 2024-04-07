@@ -2,6 +2,6 @@
   <app-header />
   <app-search></app-search>
   <div class="home-posts-view">
-    <app-post *ngFor="let post$ of posts$ | async" [link]="post$.link" [type]="post$.type" [likes]="post$.likes" [title]="post$.title"/>
+    <app-post *ngFor="let post$ of posts$ | async" [post]="post$" />
   </div>
 </div>

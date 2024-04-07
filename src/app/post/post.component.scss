@@ -1,3 +1,13 @@
 .playing {
     display: none;
 }
+
+.notMuted {
+    background-image: url("../../assets/icon/audio.svg");
+    background-repeat: no-repeat;
+}
+
+.muted {
+    background-image: url("../../assets/icon/no_audio.svg");
+    background-repeat: no-repeat;
+}
