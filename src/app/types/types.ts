@@ -11,4 +11,5 @@ export interface Post {
     downs: number
     title: string
     author: string
+    thumbnail: string
 }

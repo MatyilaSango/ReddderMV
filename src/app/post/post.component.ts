@@ -9,7 +9,7 @@ import { savePost } from '../states/bookmark/bookmark.action';
 import { selectBookmarkPosts } from '../states/bookmark/bookmark.selector';
 import { personCircle } from "ionicons/icons"
 import { addIcons } from 'ionicons';
-import { VOLUME_ICON_NAMES } from '../enums/enums';
+import { MEDIA, VOLUME_ICON_NAMES } from '../enums/enums';
 
 @Component({
   selector: 'app-post',
@@ -22,7 +22,7 @@ export class PostComponent {
   @Input() post!: Post;
   
   playing: boolean;
-  videoElement!: HTMLVideoElement;
+  element!: HTMLVideoElement | HTMLImageElement;
   isMuted: boolean;
   volumeIconName: string;
 
@@ -33,19 +33,36 @@ export class PostComponent {
     this.volumeIconName = "volume-high"
   }
 
-  handleVideoOnLoad(e: Event){
-    const videoElement: HTMLVideoElement = e.currentTarget as HTMLVideoElement
-    this.videoElement = videoElement
+  handleElementOnLoaded(e: Event){
+    switch(this.post._type){
+      case MEDIA.video:
+        this.element = e.currentTarget as HTMLVideoElement
+        break;
+
+      case MEDIA.Gif:
+        this.element = e.currentTarget as HTMLImageElement
+    }
   }
 
-  handleVideoControls(){
-    this.playing ? this.videoElement.pause() : this.videoElement.play()
-    this.playing = !this.videoElement.paused
+  handlePlay(){
+    switch(this.post._type){
+      case MEDIA.video:
+        const videoElement = this.element as HTMLVideoElement
+        this.playing ? videoElement.pause() : videoElement.play();
+        this.playing = !videoElement.paused;
+        break;
+
+      case MEDIA.Gif:
+        const imageElement = this.element as HTMLImageElement
+        this.playing = !this.playing
+        imageElement.src = this.playing ? this.post.link : this.post.thumbnail  
+    }
   }
 
   handleVideoAudioMute(){
-    this.videoElement.muted = !this.videoElement.muted
-    this.isMuted = this.videoElement.muted
+    const videoElement = this.element as HTMLVideoElement
+    videoElement.muted = !videoElement.muted
+    this.isMuted = videoElement.muted
     this.volumeIconName = this.isMuted ? VOLUME_ICON_NAMES.VolumeMute : VOLUME_ICON_NAMES.VolumeHigh
   }
 

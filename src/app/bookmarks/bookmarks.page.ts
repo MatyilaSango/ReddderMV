@@ -22,7 +22,6 @@ export class BookmarksPage{
 
   constructor(private store: Store<AppState>) { 
     this.posts$ = this.store.select(selectBookmarkPosts)
-    this.posts$.forEach(p => console.log(p))
   }
 
 }

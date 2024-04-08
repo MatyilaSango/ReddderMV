@@ -1,6 +1,7 @@
 export const enum MEDIA {
     video = "video",
-    Image = "image"
+    Image = "image",
+    Gif = "gif"
 }
 
 export const enum PAGES {

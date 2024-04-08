@@ -64,7 +64,8 @@ export class SearchComponentService {
           ups: data?.ups, 
           title: data?.title,
           downs: data?.downs,
-          author: data?.author
+          author: data?.author,
+          thumbnail: data?.thumbnail
         }
         this.userData = [...this.userData, postData];
       }
@@ -78,7 +79,8 @@ export class SearchComponentService {
               ups: data?.ups, 
               title: data?.title,
               downs: data?.downs,
-              author: data?.author
+              author: data?.author,
+              thumbnail: data?.thumbnail
             }
             this.userData = [...this.userData, postData];
           }
@@ -86,11 +88,12 @@ export class SearchComponentService {
           if (!this.userData.includes(data.url) && data.url !== undefined) {
             const postData: Post = {
               link: data.url, 
-              _type: MEDIA.Image, 
+              _type: this.isGif(data.url) ? MEDIA.Gif : MEDIA.Image, 
               ups: data?.ups, 
               title: data?.title,
               downs: data?.downs,
-              author: data?.author
+              author: data?.author,
+              thumbnail: data?.thumbnail
             }
             this.userData = [...this.userData, postData]
           }
@@ -108,7 +111,7 @@ export class SearchComponentService {
    */
   isMedia = (e: string) => {
     if (typeof e === "undefined") return false;
-    if (this.isImage(e) || this.isVideo(e)) return true;
+    if (this.isImage(e) || this.isVideo(e) || this.isGif(e)) return true;
     return false;
   };
 
@@ -130,7 +133,18 @@ export class SearchComponentService {
    * @returns boolean
    */
   isVideo = (e: string) => {
-    if (e.includes("redgif") || e.includes(".mp4") || e.includes(".gifv") || e.includes(".gif") || e.includes(".ts")) return true;
+    if (e.includes("redgif") || e.includes(".mp4") || e.includes(".gifv") || e.includes(".ts")) return true;
     return false;
   };
+
+  /**
+   * Check if is gif.
+   * 
+   * @param e link
+   * @returns boolean
+   */
+  isGif = (e: string) => {
+    if(e.includes(".gif")) return true;
+    return false;
+  }
 }
