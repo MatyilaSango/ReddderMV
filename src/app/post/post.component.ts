@@ -5,11 +5,11 @@ import { ActionButtonComponent } from '../action-button/action-button.component'
 import { Post } from '../types/types';
 import { Store } from '@ngrx/store';
 import { AppState } from '../states/App';
-import { savePost } from '../states/bookmark/bookmark.action';
+import { deletePost, savePost } from '../states/bookmark/bookmark.action';
 import { selectBookmarkPosts } from '../states/bookmark/bookmark.selector';
 import { personCircle } from "ionicons/icons"
 import { addIcons } from 'ionicons';
-import { MEDIA, VOLUME_ICON_NAMES } from '../enums/enums';
+import { MEDIA, PAGES, VOLUME_ICON_NAMES } from '../enums/enums';
 
 @Component({
   selector: 'app-post',
@@ -20,6 +20,7 @@ import { MEDIA, VOLUME_ICON_NAMES } from '../enums/enums';
 })
 export class PostComponent {
   @Input() post!: Post;
+  @Input() currentPage!: string
   
   playing: boolean;
   element!: HTMLVideoElement | HTMLImageElement;
@@ -67,7 +68,16 @@ export class PostComponent {
   }
 
   bookmarkPost(){
-    this.store.dispatch(savePost(this.post))
+    switch(this.currentPage){
+      case PAGES.home:
+        this.store.dispatch(savePost(this.post))
+        break;
+
+      case PAGES.bookmarks:
+        this.store.dispatch(deletePost(this.post))
+        break;
+    }
+    
     this.store.select(selectBookmarkPosts).forEach(state => {
       localStorage.setItem("bookmark", JSON.stringify(state))
     })

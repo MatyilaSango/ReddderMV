@@ -1,7 +1,14 @@
 <div class="h-screen">
   <app-header />
   <div class="page-view">
-    <app-post *ngFor="let post$ of posts$ | async" [post]="post$" />
+    <div class="py-1 px-2 bg-zinc-800 flex items-center opacity-50">
+      <ion-icon name="person-sharp" size="small" /> 
+      <span>&ensp;-</span>
+      <ion-text class="text-sm text-white">
+        {{type | async}}/{{account | async}}
+      </ion-text>
+    </div>
+    <app-post *ngFor="let post$ of posts$ | async" [post]="post$" currentPage="home" />
   </div>
 </div>
 

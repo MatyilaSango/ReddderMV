@@ -1,4 +1,4 @@
-<ion-card class="relative">
+<ion-card class="relative min-h-96 bg-black flex items-center">
   <video (loadeddata)="handleElementOnLoaded($event)" (click)="handlePlay()" class="w-full" *ngIf="post._type === 'video'" alt="" [poster]="post.thumbnail">
     <source [src]="post.link" type="video/mp4">
   </video>
@@ -7,14 +7,14 @@
   <div class="absolute bottom-0 left-0 w-full pointer-events-none">
     <div class="w-full flex justify-end">
       <div class="w-8 grid grid-cols-1 gap-1 justify-center pointer-events-auto">
-        <app-action-button iconName="thumbs-up" iconSize="large" [text]="post.ups" class="w-5"/>
-        <app-action-button iconName="thumbs-down" iconSize="large" [text]="post.downs" class="w-5"/>
-        <app-action-button iconName="bookmark" iconSize="large" (click)="bookmarkPost()" class="w-5"/>
+        <app-action-button iconName="thumbs-up" iconSize="small" [text]="post.ups" />
+        <app-action-button iconName="thumbs-down" iconSize="small" [text]="post.downs"/>
+        <app-action-button iconName="bookmark" iconSize="small" (click)="bookmarkPost()"/>
       </div>
     </div>
     <div class="w-full bg-gradient-to-t from-black to-transparent p-2 pt-0">
       <div class="text-white flex items-center pointer-events-auto">
-        <ion-icon name="person-circle" size="large" class="w-5" />
+        <ion-icon name="person-circle" size="small" />
         <span class="font-medium text-sm ">
           {{post.author}}
         </span>
