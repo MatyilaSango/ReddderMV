@@ -6,12 +6,12 @@ import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-tabs',
-  templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.scss'],
+  templateUrl: './tabs.page.html',
+  styleUrls: ['./tabs.page.scss'],
   standalone: true,
   imports: [IonTabButton, IonTabBar, IonIcon, IonTabs, ]
 })
-export class TabsComponent{
+export class TabsPage{
 
   constructor(private router: Router) { 
     addIcons({home, search, bookmarks})

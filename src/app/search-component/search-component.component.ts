@@ -5,22 +5,22 @@ import { IonCard, IonList, IonItem, IonSelect, IonSelectOption, IonIcon } from "
 import { Store } from '@ngrx/store';
 import { AppState } from '../states/App';
 import { storeSearchAccount } from '../states/search/search.actions';
-import { SearchService } from './search.service';
+import { SearchComponentService } from './search-component.service';
 import { search } from "ionicons/icons"
 import { addIcons } from 'ionicons';
 
 @Component({
-  selector: 'app-search',
+  selector: 'app-search-component',
+  templateUrl: './search-component.component.html',
+  styleUrls: ['./search-component.component.scss'],
   standalone: true,
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
   imports: [IonItem, IonSelect, IonSelectOption, IonList, CommonModule, FormsModule, IonCard, IonIcon]
 })
-export class SearchComponent {
+export class SearchComponentComponent{
   name: string;
   type: string;
   data: any[]
-  searchService = inject(SearchService)
+  searchService = inject(SearchComponentService)
 
   constructor(private store: Store<AppState>) { 
     addIcons({search})

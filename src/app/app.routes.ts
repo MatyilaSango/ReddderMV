@@ -2,16 +2,26 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-  },
-  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'tabs/home',
     pathMatch: 'full',
   },
   {
-    path: 'bookmarks',
-    loadComponent: () => import('./bookmarks/bookmarks.page').then( m => m.BookmarksPage)
+    path: 'tabs',
+    loadComponent: () => import('./tabs/tabs.page').then( m => m.TabsPage),
+    children: [
+      {
+        path: 'home',
+        loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+      },
+      {
+        path: 'search',
+        loadComponent: () => import('./search/search.page').then( m => m.SearchPage)
+      },
+      {
+        path: 'bookmarks',
+        loadComponent: () => import('./bookmarks/bookmarks.page').then( m => m.BookmarksPage)
+      },  
+    ]
   },
 ];

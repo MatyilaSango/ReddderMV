@@ -6,7 +6,7 @@ import { Post } from '../types/types';
 @Injectable({
   providedIn: 'root'
 })
-export class SearchService {
+export class SearchComponentService {
   private name: string;
   private type: string;
   private lastPostAfter: string | undefined;
