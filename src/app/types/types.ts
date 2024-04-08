@@ -1,7 +1,8 @@
 export interface SearchAccountState {
     name: string;
-    type_: string
-    data: Post[]
+    type_: string;
+    data: Post[];
+    isFound: boolean;
 }
 
 export interface Post {

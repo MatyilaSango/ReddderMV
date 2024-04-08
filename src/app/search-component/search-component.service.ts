@@ -10,13 +10,15 @@ export class SearchComponentService {
   private name: string;
   private type: string;
   private lastPostAfter: string | undefined;
-  private userData: Post[]
+  private userData: Post[];
+  private isFound: boolean;
 
   constructor() {
     this.name = ""
     this.type = ""
     this.userData = []
     this.lastPostAfter = undefined
+    this.isFound = true
   }
 
   async getData(name: string, type: string) {
@@ -27,6 +29,7 @@ export class SearchComponentService {
       this.type = type
       this.lastPostAfter = undefined
       this.userData = []
+      this.isFound = true
     }
 
     try {
@@ -38,7 +41,7 @@ export class SearchComponentService {
     } catch (error) {
     }
 
-    return {name: this.name, type_: this.type, data: this.userData}
+    return {name: this.name, type_: this.type, data: this.userData, isFound: this.isFound}
   }
 
   private async fetchData(name: string, type: string, lastPostAfter?: string | undefined) {
@@ -49,9 +52,7 @@ export class SearchComponentService {
       )).data;
 
     } catch (AxiosError) {
-      alert(
-        `No such account ${name} found with type ${type}! ${this.lastPostAfter}`
-      );
+      this.isFound = false
     }  
   }
 

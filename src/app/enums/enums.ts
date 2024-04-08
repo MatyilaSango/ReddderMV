@@ -13,3 +13,8 @@ export const enum VOLUME_ICON_NAMES {
     VolumeHigh = "volume-high",
     VolumeMute = "volume-mute"
 }
+
+export const enum TOAST_MESSAGES {
+    searchAccountFound = "Account found and set!",
+    searchAccountNotFound = "Account not found!"
+}
