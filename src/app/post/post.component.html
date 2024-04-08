@@ -6,7 +6,7 @@
   <img class="w-full" *ngIf="post._type === 'gif'" alt="" [src]="post.thumbnail" (load)="handleElementOnLoaded($event)" (click)="handlePlay()"/>
   <div class="absolute bottom-0 left-0 w-full pointer-events-none">
     <div class="w-full flex justify-end">
-      <div class="w-8 grid grid-cols-1 gap-1 justify-center pointer-events-auto">
+      <div class="w-8 grid grid-cols-1 gap-3 justify-center pointer-events-auto">
         <app-action-button iconName="thumbs-up" iconSize="small" [text]="post.ups" />
         <app-action-button iconName="thumbs-down" iconSize="small" [text]="post.downs"/>
         <app-action-button iconName="bookmark" iconSize="small" (click)="bookmarkPost()"/>
