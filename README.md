@@ -1,4 +1,4 @@
 Mobile version of Reddder.
 
 # Screenshot
-![image](https://github.com/MatyilaSango/ReddderMV/assets/60422984/dfb978ea-9ba1-4085-80f5-d1b73f2b4319)
+![image](https://github.com/MatyilaSango/ReddderMV/assets/60422984/8816cff7-9b12-44eb-bc22-9eb29d18519d)
