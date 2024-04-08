@@ -5,23 +5,23 @@
   <img class="w-full" *ngIf="post._type === 'image'" alt="" [src]="post.link" />
   <img class="w-full" *ngIf="post._type === 'gif'" alt="" [src]="post.thumbnail" (load)="handleElementOnLoaded($event)" (click)="handlePlay()"/>
   <div class="absolute bottom-0 left-0 w-full pointer-events-none">
-    <div class="w-full flex justify-end p-2">
-      <div class="w-8 grid grid-cols-1 gap-2 pointer-events-auto">
-        <app-action-button iconName="thumbs-up" iconSize="large" [text]="post.ups" />
-        <app-action-button iconName="thumbs-down" iconSize="large" [text]="post.downs"  />
-        <app-action-button iconName="bookmark" iconSize="large" (click)="bookmarkPost()"/>
+    <div class="w-full flex justify-end">
+      <div class="w-8 grid grid-cols-1 gap-1 justify-center pointer-events-auto">
+        <app-action-button iconName="thumbs-up" iconSize="large" [text]="post.ups" class="w-5"/>
+        <app-action-button iconName="thumbs-down" iconSize="large" [text]="post.downs" class="w-5"/>
+        <app-action-button iconName="bookmark" iconSize="large" (click)="bookmarkPost()" class="w-5"/>
       </div>
     </div>
-    <div class="w-full py-3 bg-gradient-to-t from-black to-transparent p-2">
+    <div class="w-full bg-gradient-to-t from-black to-transparent p-2 pt-0">
       <div class="text-white flex items-center pointer-events-auto">
         <ion-icon name="person-circle" size="large" class="w-5" />
-        <ion-text class="font-bold text-base ">
+        <span class="font-medium text-sm ">
           {{post.author}}
-        </ion-text>
+        </span>
       </div>
-      <ion-text >
+      <p class="text-xs">
         {{post.title}}
-      </ion-text>
+      </p>
     </div>
   </div>
   <div *ngIf="post._type === 'video' || post._type === 'gif'" (click)="handlePlay()" [class.playing]="playing" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14">
