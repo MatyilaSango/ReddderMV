@@ -20,6 +20,7 @@ import { loadMoreSearchAccount } from '../states/search/search.actions';
 })
 export class PostsContainerComponent {
   @Input() posts$!: Observable<Post[]>
+  @Input() currentPage!: string
 
   isLoadingMore: boolean;
   router: Router

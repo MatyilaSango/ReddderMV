@@ -1,4 +1,4 @@
 <div class="page-view grid grid-cols-1 gap-3" (scroll)="HandleLoadMorePosts($event)">
-  <app-post *ngFor="let post$ of posts$ | async" [post]="post$" currentPage="home" />
+  <app-post *ngFor="let post$ of posts$ | async" [post]="post$" [currentPage]="currentPage" />
   <div *ngIf="isLoadingMore" class="flex justify-center text-xs animate-pulse">Loading more...</div>
 </div>

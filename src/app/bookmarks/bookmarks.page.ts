@@ -10,6 +10,7 @@ import { selectBookmarkPosts } from '../states/bookmark/bookmark.selector';
 import { Observable } from 'rxjs';
 import { PostComponent } from "../post/post.component";
 import { PostsContainerComponent } from "../posts-container/posts-container.component";
+import { PAGES } from '../enums/enums';
 
 @Component({
     selector: 'app-bookmarks',
@@ -20,6 +21,7 @@ import { PostsContainerComponent } from "../posts-container/posts-container.comp
 })
 export class BookmarksPage{
   posts$: Observable<Post[]>
+  currentPage: string = PAGES.bookmarks
 
   constructor(private store: Store<AppState>) { 
     this.posts$ = this.store.select(selectBookmarkPosts)

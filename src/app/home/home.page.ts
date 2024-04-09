@@ -11,6 +11,7 @@ import { Post } from '../types/types';
 import { personSharp } from "ionicons/icons"
 import { addIcons } from 'ionicons';
 import { PostsContainerComponent } from "../posts-container/posts-container.component";
+import { PAGES } from '../enums/enums';
 
 @Component({
     selector: 'app-home',
@@ -23,6 +24,7 @@ export class HomePage {
   posts$: Observable<Post[]>
   account: Observable<string>
   type: Observable<string>
+  currentPage: string = PAGES.home
   
   constructor(private store: Store<AppState>) {
     addIcons({ personSharp })
