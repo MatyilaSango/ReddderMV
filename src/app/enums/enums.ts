@@ -8,7 +8,7 @@ export const enum PAGES {
     home = "home",
     bookmarks = "bookmarks",
     search = "search",
-    fullscreenPost = "fullscreenPost"
+    fullscreenPost = "fullscreen-post"
 }
 
 export const enum VOLUME_ICON_NAMES {
@@ -29,8 +29,8 @@ export const enum STATES {
 }
 
 export const enum URL_PAGES {
-    Home = "",
-    search = "tabs/search",
-    Bookmarkr = "tabs/bookmarks",
-    FullscreenPost = "fullscreen-post"
+    Home = "/tabs/" + PAGES.home,
+    search = "/tabs/" + PAGES.search,
+    Bookmarks = "/tabs/" + PAGES.bookmarks,
+    FullscreenPost = "/" + PAGES.fullscreenPost
 }

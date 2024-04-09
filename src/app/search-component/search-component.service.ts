@@ -33,6 +33,7 @@ export class SearchComponentService {
     }
 
     try {
+      if(this.lastPostAfter === "" || !name || !type) return {name: this.name, type_: this.type, data: this.userData, isFound: this.isFound}
       const data = await this.fetchData(name, type, this.lastPostAfter);
       this.lastPostAfter = data?.data?.after ? data.data.after : "";
       data?.data?.children.map((child: any) => {
