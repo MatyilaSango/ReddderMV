@@ -1,26 +1,30 @@
-<ion-card class="relative h-full bg-black flex items-center">
+<ion-card class="relative min-h-[400px] h-full bg-black flex items-center border-y border-zinc-800 m-0">
   <video (loadeddata)="handleElementOnLoaded($event)" (click)="handlePlay()" class="w-full" *ngIf="post._type === 'video'" alt="" [poster]="post.thumbnail">
     <source [src]="post.link" type="video/mp4">
   </video>
-  <img class="w-full" *ngIf="post._type === 'image'" alt="" [src]="post.link" />
+  <img class="w-full" *ngIf="post._type === 'image'" alt="" [src]="post.link" (load)="handleElementOnLoaded($event)" />
   <img class="w-full" *ngIf="post._type === 'gif'" alt="" [src]="post.thumbnail" (load)="handleElementOnLoaded($event)" (click)="handlePlay()"/>
   <div class="absolute bottom-0 left-0 w-full pointer-events-none">
     <div class="w-full flex justify-end">
-      <div class="w-8 grid grid-cols-1 gap-3 justify-center pointer-events-auto">
-        <app-action-button iconName="thumbs-up" iconSize="small" [text]="post.ups" />
-        <app-action-button iconName="thumbs-down" iconSize="small" [text]="post.downs"/>
-        <app-action-button iconName="bookmark" iconSize="small" (click)="bookmarkPost()"/>
-        <app-action-button iconName="expand" iconSize="small" (click)="toFullScreen()"/>
+      <div class="w-8 grid grid-cols-1 justify-center pointer-events-auto">
+        <app-action-button class="scale-90" iconName="thumbs-up-outline" iconSize="large" [text]="post.ups" />
+        <app-action-button class="scale-90" iconName="thumbs-down-outline" iconSize="large" [text]="post.downs"/>
+        <app-action-button class="scale-90" iconName="bookmark-outline" iconSize="large" (click)="bookmarkPost()"/>
+        <app-action-button class="scale-90" iconName="expand-outline" iconSize="large" (click)="toFullScreen()"/>
       </div>
     </div>
-    <div class="w-full bg-gradient-to-t from-black to-transparent p-2 pt-0">
+    <div class="w-full bg-gradient-to-t from-black to-transparent p-2 pt-0 grid grid-cols-1 gap-2">
       <div class="text-white flex items-center pointer-events-auto">
         <ion-icon name="person-circle" size="small" />
         <span class="font-medium text-sm ">
           {{post.author}}
+        </span> &nbsp;&nbsp; <span class="opacity-70">with</span> &nbsp;&nbsp;
+        <span class="border h-fit rounded-xl px-2 text-xs flex items-center bg-black bg-opacity-20 opacity-80" (click)="handleActionSheet(true)">
+          <ion-icon class="scale-75" name="person-outline" size="small" />
+          {{contributors.length}} people
         </span>
       </div>
-      <p class="text-xs">
+      <p class="text-sm">
         {{post.title}}
       </p>
     </div>
@@ -35,4 +39,10 @@
     [duration]="2000"
     (didDismiss)="handleHideToast()"
   ></ion-toast>
+  <ion-action-sheet
+    [isOpen]="isActionSheetOpen"
+    header="Contributors"
+    [buttons]="actionSheetButtons"
+    (didDismiss)="handleActionSheet(false)"
+  ></ion-action-sheet>
 </ion-card>

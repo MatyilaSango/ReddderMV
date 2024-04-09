@@ -1,23 +1,24 @@
 import { Component, Input } from '@angular/core';
-import { IonCard, IonText, IonIcon, IonToast } from "@ionic/angular/standalone";
+import { IonCard, IonText, IonIcon, IonToast, IonActionSheet } from "@ionic/angular/standalone";
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { ActionButtonComponent } from '../action-button/action-button.component';
-import { Post } from '../types/types';
+import { ActionSheetButton, Post } from '../types/types';
 import { Store } from '@ngrx/store';
 import { AppState } from '../states/App';
 import { deletePost, savePost } from '../states/bookmark/bookmark.action';
-import { personCircle } from "ionicons/icons"
+import { personCircle, personOutline } from "ionicons/icons"
 import { addIcons } from 'ionicons';
 import { MEDIA, PAGES, URL_PAGES, VOLUME_ICON_NAMES } from '../enums/enums';
 import { addPostForFullscreenView } from '../states/fullscreenPost/fullscreenPost.action';
 import { Router } from '@angular/router';
+import { selectAccount } from '../states/search/search.selector';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
   standalone: true,
-  imports: [IonToast, IonIcon, IonText, IonCard, AsyncPipe, CommonModule, ActionButtonComponent]
+  imports: [IonActionSheet, IonToast, IonIcon, IonText, IonCard, AsyncPipe, CommonModule, ActionButtonComponent]
 })
 export class PostComponent {
   @Input() post!: Post;
@@ -30,15 +31,21 @@ export class PostComponent {
   isToastOpen: boolean;
   toastMessage: string;
   router: Router;
+  contributors: string[];
+  actionSheetButtons: ActionSheetButton[];
+  isActionSheetOpen: boolean;
 
   constructor(private store: Store<AppState>) {  
-    addIcons({personCircle}) 
+    addIcons({personCircle, personOutline}) 
     this.playing = false;
     this.isMuted = false;
     this.volumeIconName = "volume-high"
     this.isToastOpen = false
     this.toastMessage = ""
     this.router = new Router()
+    this.contributors = []
+    this.actionSheetButtons = []
+    this.isActionSheetOpen = false
   }
 
   handleElementOnLoaded(e: Event){
@@ -50,6 +57,16 @@ export class PostComponent {
       case MEDIA.Gif:
         this.element = e.currentTarget as HTMLImageElement
     }
+
+    this.store.select(selectAccount).forEach(account => {
+      this.contributors = [this.post.author, account]
+    })
+
+    this.contributors.forEach(contributor => {
+      this.actionSheetButtons.push({
+        text: contributor
+      })
+    })
   }
 
   handlePlay(){
@@ -92,6 +109,10 @@ export class PostComponent {
 
   handleHideToast(){
     this.isToastOpen = false
+  }
+
+  handleActionSheet(value: boolean){
+    this.isActionSheetOpen = value
   }
 
   toFullScreen(){

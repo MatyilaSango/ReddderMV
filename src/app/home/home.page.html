@@ -8,7 +8,7 @@
         {{type | async}}/{{account | async}}
       </ion-text>
     </div>
-    <div>
+    <div class="grid grid-cols-1 gap-3">
       <app-post *ngFor="let post$ of posts$ | async" [post]="post$" currentPage="home" />
     </div>  
   </div>

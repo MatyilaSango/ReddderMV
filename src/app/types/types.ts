@@ -14,3 +14,11 @@ export interface Post {
     author: string
     thumbnail: string
 }
+
+export interface ActionSheetButton {
+    text: string;
+    role?: string;
+    data?: {
+        action: string
+    }
+}
