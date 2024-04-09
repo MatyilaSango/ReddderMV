@@ -22,7 +22,7 @@ export class SearchComponentService {
   }
 
   async getData(name: string, type: string) {
-    if (type === "subreddit" || type === undefined || type === null || type === "") type = "r";
+    if (type === undefined || type === null || type === "") type = "r";
 
     if(this.name !== name || this.type !== type){
       this.name = name

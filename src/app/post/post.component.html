@@ -1,4 +1,4 @@
-<ion-card class="relative min-h-96 bg-black flex items-center">
+<ion-card class="relative h-full bg-black flex items-center">
   <video (loadeddata)="handleElementOnLoaded($event)" (click)="handlePlay()" class="w-full" *ngIf="post._type === 'video'" alt="" [poster]="post.thumbnail">
     <source [src]="post.link" type="video/mp4">
   </video>

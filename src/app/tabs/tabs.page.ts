@@ -16,8 +16,4 @@ export class TabsPage{
   constructor(private router: Router) { 
     addIcons({home, search, bookmarks})
   }
-
-  navigate(page: string){
-    this.router.navigate([page])
-  }
 }

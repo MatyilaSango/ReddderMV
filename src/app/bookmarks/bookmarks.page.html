@@ -1,6 +1,8 @@
 <div class="h-screen">
   <app-header />
   <div class="page-view">
-    <app-post *ngFor="let post$ of posts$ | async" [post]="post$" currentPage="bookmarks" />
+    <div>
+      <app-post *ngFor="let post$ of posts$ | async" [post]="post$" currentPage="bookmarks" />
+    </div>
   </div>
 </div>
