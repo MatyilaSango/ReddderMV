@@ -10,6 +10,7 @@
         <app-action-button iconName="thumbs-up" iconSize="small" [text]="post.ups" />
         <app-action-button iconName="thumbs-down" iconSize="small" [text]="post.downs"/>
         <app-action-button iconName="bookmark" iconSize="small" (click)="bookmarkPost()"/>
+        <app-action-button iconName="expand" iconSize="small" (click)="toFullScreen()"/>
       </div>
     </div>
     <div class="w-full bg-gradient-to-t from-black to-transparent p-2 pt-0">
@@ -28,4 +29,10 @@
     <app-action-button iconName="play-circle" iconSize="large" />
   </div>
   <app-action-button *ngIf="post._type === 'video'" (click)="handleVideoAudioMute()" [iconName]="volumeIconName" iconSize="large" class="absolute top-2 left-2 size-5" />
+  <ion-toast
+    [isOpen]="isToastOpen"
+    [message]="toastMessage"
+    [duration]="2000"
+    (didDismiss)="handleHideToast()"
+  ></ion-toast>
 </ion-card>
