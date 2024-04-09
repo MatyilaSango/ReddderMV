@@ -6,10 +6,11 @@ import { Post } from '../types/types';
 import { Store } from '@ngrx/store';
 import { AppState } from '../states/App';
 import { deletePost, savePost } from '../states/bookmark/bookmark.action';
-import { selectBookmarkPosts } from '../states/bookmark/bookmark.selector';
 import { personCircle } from "ionicons/icons"
 import { addIcons } from 'ionicons';
-import { MEDIA, PAGES, VOLUME_ICON_NAMES } from '../enums/enums';
+import { MEDIA, PAGES, URL_PAGES, VOLUME_ICON_NAMES } from '../enums/enums';
+import { addPostForFullscreenView } from '../states/fullscreenPost/fullscreenPost.action';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -28,6 +29,7 @@ export class PostComponent {
   volumeIconName: string;
   isToastOpen: boolean;
   toastMessage: string;
+  router: Router;
 
   constructor(private store: Store<AppState>) {  
     addIcons({personCircle}) 
@@ -36,6 +38,7 @@ export class PostComponent {
     this.volumeIconName = "volume-high"
     this.isToastOpen = false
     this.toastMessage = ""
+    this.router = new Router()
   }
 
   handleElementOnLoaded(e: Event){
@@ -85,9 +88,6 @@ export class PostComponent {
     }
     
     this.isToastOpen = true
-    this.store.select(selectBookmarkPosts).forEach(state => {
-      localStorage.setItem("bookmark", JSON.stringify(state))
-    })
   }
 
   handleHideToast(){
@@ -95,6 +95,7 @@ export class PostComponent {
   }
 
   toFullScreen(){
-
+    this.store.dispatch(addPostForFullscreenView(this.post))
+    this.router.navigate([URL_PAGES.FullscreenPost])
   }
 }

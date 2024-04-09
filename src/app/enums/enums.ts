@@ -6,7 +6,9 @@ export const enum MEDIA {
 
 export const enum PAGES {
     home = "home",
-    bookmarks = "bookmarks"
+    bookmarks = "bookmarks",
+    search = "search",
+    fullscreenPost = "fullscreenPost"
 }
 
 export const enum VOLUME_ICON_NAMES {
@@ -17,4 +19,18 @@ export const enum VOLUME_ICON_NAMES {
 export const enum TOAST_MESSAGES {
     searchAccountFound = "Account found and set!",
     searchAccountNotFound = "Account not found!"
+}
+
+export const enum STATES {
+    AppState = "AppState",
+    searchAccount = "searchAccount",
+    bookmarks = "bookmarks",
+    fullscreenPost = "fullscreenPost"
+}
+
+export const enum URL_PAGES {
+    Home = "",
+    search = "tabs/search",
+    Bookmarkr = "tabs/bookmarks",
+    FullscreenPost = "fullscreen-post"
 }

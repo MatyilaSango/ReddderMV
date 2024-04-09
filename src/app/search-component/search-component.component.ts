@@ -9,7 +9,7 @@ import { SearchComponentService } from './search-component.service';
 import { search } from "ionicons/icons"
 import { addIcons } from 'ionicons';
 import { Router } from '@angular/router';
-import { TOAST_MESSAGES } from '../enums/enums';
+import { TOAST_MESSAGES, URL_PAGES } from '../enums/enums';
 
 @Component({
   selector: 'app-search-component',
@@ -45,9 +45,8 @@ export class SearchComponentComponent{
   async handleSubmit(e: Event){
     const data = await this.searchService.getData(this.name, this.type)
     this.store.dispatch(storeSearchAccount(data))
-    localStorage.setItem("searchAccount", JSON.stringify(data))
     if (data.isFound) {
-      this.router.navigate(["tabs/home"])
+      this.router.navigate([URL_PAGES.Home])
     } else {
       this.toastMessage = TOAST_MESSAGES.searchAccountNotFound;
       this.isToastOpen = true

@@ -1,6 +1,7 @@
 import { Post, SearchAccountState } from "../types/types";
 
 export interface AppState {
-    searchAccount: SearchAccountState
-    bookmarks: Post[]
+    searchAccount: SearchAccountState;
+    bookmarks: Post[];
+    fullscreenPost: Post;
 }
