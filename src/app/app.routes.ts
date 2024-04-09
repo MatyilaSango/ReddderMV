@@ -24,4 +24,8 @@ export const routes: Routes = [
       },  
     ]
   },
+  {
+    path: 'fullscreen-post',
+    loadComponent: () => import('./fullscreen-post/fullscreen-post.page').then( m => m.FullscreenPostPage)
+  },
 ];

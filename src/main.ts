@@ -10,6 +10,7 @@ import { provideState, provideStore } from '@ngrx/store';
 import { searchAccountReducer } from './app/states/search/search.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { bookmarkPostReducer } from './app/states/bookmark/bookmark.reducer';
+import { fullscreenPostReducer } from './app/states/fullscreenPost/fullscreenPost.reducer';
 
 if (environment.production) {
   enableProdMode();
@@ -23,6 +24,7 @@ bootstrapApplication(AppComponent, {
     provideStore(),
     provideState({ name: 'searchAccount', reducer: searchAccountReducer }),
     provideState({ name: 'bookmarks', reducer: bookmarkPostReducer }),
+    provideState({ name: 'fullscreenPost', reducer: fullscreenPostReducer }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
 ],
 });
