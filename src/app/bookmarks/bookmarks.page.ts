@@ -9,13 +9,14 @@ import { AppState } from '../states/App';
 import { selectBookmarkPosts } from '../states/bookmark/bookmark.selector';
 import { Observable } from 'rxjs';
 import { PostComponent } from "../post/post.component";
+import { PostsContainerComponent } from "../posts-container/posts-container.component";
 
 @Component({
     selector: 'app-bookmarks',
     templateUrl: './bookmarks.page.html',
     styleUrls: ['./bookmarks.page.scss'],
     standalone: true,
-    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, HeaderComponent, PostComponent]
+    imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, HeaderComponent, PostComponent, PostsContainerComponent]
 })
 export class BookmarksPage{
   posts$: Observable<Post[]>

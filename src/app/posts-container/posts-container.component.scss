@@ -1,0 +1,8 @@
+.page-view{
+    height: calc(100% - 150px);
+    overflow-y: scroll;
+  }
+  
+  .page-view::-webkit-scrollbar{
+    display: none;
+  }

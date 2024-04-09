@@ -10,13 +10,14 @@ import { HeaderComponent } from "../header/header.component";
 import { Post } from '../types/types';
 import { personSharp } from "ionicons/icons"
 import { addIcons } from 'ionicons';
+import { PostsContainerComponent } from "../posts-container/posts-container.component";
 
 @Component({
     selector: 'app-home',
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
     standalone: true,
-    imports: [IonIcon, IonText, IonCard, IonHeader, IonToolbar, IonTitle, IonContent, AsyncPipe, PostComponent, CommonModule, HeaderComponent]
+    imports: [IonIcon, IonText, IonCard, IonHeader, IonToolbar, IonTitle, IonContent, AsyncPipe, PostComponent, CommonModule, HeaderComponent, PostsContainerComponent]
 })
 export class HomePage {
   posts$: Observable<Post[]>
