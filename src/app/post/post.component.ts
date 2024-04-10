@@ -116,7 +116,9 @@ export class PostComponent {
   }
 
   toFullScreen(){
-    this.store.dispatch(addPostForFullscreenView(this.post))
+    let post: Post = Object.assign({}, this.post)
+    post.pageFrom = this.currentPage
+    this.store.dispatch(addPostForFullscreenView(post))
     this.router.navigate([URL_PAGES.FullscreenPost])
   }
 }

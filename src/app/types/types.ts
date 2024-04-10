@@ -13,6 +13,7 @@ export interface Post {
     title: string
     author: string
     thumbnail: string
+    pageFrom?: string
 }
 
 export interface ActionSheetButton {
