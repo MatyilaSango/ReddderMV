@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, ViewChild, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post } from '../types/types';
 import { PostComponent } from "../post/post.component";
@@ -10,15 +10,17 @@ import { URL_PAGES } from '../enums/enums';
 import { selectAccount, selectType } from '../states/search/search.selector';
 import { SearchComponentService } from '../search-component/search-component.service';
 import { loadMoreSearchAccount } from '../states/search/search.actions';
+import { IonContent } from "@ionic/angular/standalone";
 
 @Component({
     selector: 'app-posts-container',
     templateUrl: './posts-container.component.html',
     styleUrls: ['./posts-container.component.scss'],
     standalone: true,
-    imports: [PostComponent, AsyncPipe, CommonModule]
+    imports: [IonContent, PostComponent, AsyncPipe, CommonModule]
 })
 export class PostsContainerComponent {
+  @ViewChild(IonContent) content!: IonContent
   @Input() posts$!: Observable<Post[]>
   @Input() currentPage!: string
 
@@ -39,12 +41,10 @@ export class PostsContainerComponent {
     })
   }
 
-  async HandleLoadMorePosts(e: Event) {
-    // @ts-ignore
-    const scrollHeight = e.target.scrollHeight
-    // @ts-ignore
-    const scrollTop = e.target.scrollTop + e.target.clientHeight
-
+  async HandleLoadMorePosts() {
+    const contentScollElement = await this.content.getScrollElement()
+    const scrollHeight = contentScollElement.scrollHeight
+    const scrollTop = contentScollElement.scrollTop + contentScollElement.clientHeight
     if(scrollHeight === scrollTop && (this.router.url === URL_PAGES.Home)){
       this.isLoadingMore = true
       const data = await this.searchService.getData(this.account, this.type)

@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { IonHeader, IonToolbar } from "@ionic/angular/standalone";
+import { Component, Input } from '@angular/core';
+import { IonHeader, IonToolbar, IonText, IonIcon } from "@ionic/angular/standalone";
+import { Observable } from 'rxjs';
+import { AsyncPipe, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  imports: [IonToolbar, IonHeader]
+  imports: [IonIcon, IonText, IonToolbar, IonHeader, AsyncPipe, CommonModule]
 })
 export class HeaderComponent {
-
+  @Input() account!: Observable<string>
+  @Input() type!: Observable<string>
+  
   constructor() { }
 }

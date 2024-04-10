@@ -1,8 +1,3 @@
-.page-view{
-    height: calc(100% - 160px);
-    overflow-y: scroll;
-  }
-  
-  .page-view::-webkit-scrollbar{
-    display: none;
-  }
+ion-content::part(scroll)::-webkit-scrollbar{
+  display: none;
+}

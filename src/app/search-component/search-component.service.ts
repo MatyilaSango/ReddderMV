@@ -12,6 +12,7 @@ export class SearchComponentService {
   private lastPostAfter: string | undefined;
   private userData: Post[];
   private isFound: boolean;
+  private isFetchingData: boolean
 
   constructor() {
     this.name = ""
@@ -19,9 +20,11 @@ export class SearchComponentService {
     this.userData = []
     this.lastPostAfter = undefined
     this.isFound = true
+    this.isFetchingData = false
   }
 
   async getData(name: string, type: string) {
+    if(this.isFetchingData) return {name: this.name, type_: this.type, data: this.userData, isFound: this.isFound}
     if (type === undefined || type === null || type === "") type = "r";
 
     if(this.name !== name || this.type !== type){
@@ -33,7 +36,11 @@ export class SearchComponentService {
     }
 
     try {
-      if(this.lastPostAfter === "" || !name || !type) return {name: this.name, type_: this.type, data: this.userData, isFound: this.isFound}
+      this.isFetchingData = true
+      if(this.lastPostAfter === "" || !name || !type){
+        this.isFetchingData = false
+        return {name: this.name, type_: this.type, data: this.userData, isFound: this.isFound}
+      } 
       const data = await this.fetchData(name, type, this.lastPostAfter);
       this.lastPostAfter = data?.data?.after ? data.data.after : "";
       data?.data?.children.map((child: any) => {
@@ -42,6 +49,7 @@ export class SearchComponentService {
     } catch (error) {
     }
 
+    this.isFetchingData = false
     return {name: this.name, type_: this.type, data: this.userData, isFound: this.isFound}
   }
 
