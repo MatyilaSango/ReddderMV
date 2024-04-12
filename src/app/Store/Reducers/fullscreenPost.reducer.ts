@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store"
 import { Post } from "src/app/types/types"
-import { addPostForFullscreenView, deletePostOnFullscreenView } from "./fullscreenPost.action"
+import { addPostForFullscreenView, deletePostOnFullscreenView } from "../Actions/fullscreenPost.action"
 import { STATES } from "src/app/enums/enums"
 
 const initialPostOnFullscreen: Post = JSON.parse(localStorage.getItem(STATES.fullscreenPost) as string) || {} as Post

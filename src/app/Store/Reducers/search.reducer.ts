@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store"
 import { SearchAccountState } from "../../types/types"
-import { loadMoreSearchAccount, storeSearchAccount } from "./search.actions"
+import { loadMoreSearchAccount, storeSearchAccount } from "../Actions/search.action"
 import { STATES } from "src/app/enums/enums"
 
 const initialSearchAccountState: SearchAccountState = JSON.parse(localStorage.getItem(STATES.searchAccount) as string) || {

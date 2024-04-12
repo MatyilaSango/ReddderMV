@@ -3,8 +3,8 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonCard, IonList, IonItem, IonSelect, IonSelectOption, IonIcon, IonToast, IonSearchbar } from "@ionic/angular/standalone";
 import { Store } from '@ngrx/store';
-import { AppState } from '../states/App';
-import { storeSearchAccount } from '../states/search/search.actions';
+import { AppState } from '../Store/App';
+import { storeSearchAccount } from '../Store/Actions/search.action';
 import { SearchComponentService } from './search-component.service';
 import { search } from "ionicons/icons"
 import { addIcons } from 'ionicons';

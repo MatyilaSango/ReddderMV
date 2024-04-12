@@ -3,13 +3,13 @@ import { Observable } from 'rxjs';
 import { Post } from '../types/types';
 import { PostComponent } from "../post/post.component";
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { AppState } from '../states/App';
+import { AppState } from '../Store/App';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { URL_PAGES } from '../enums/enums';
-import { selectAccount, selectType } from '../states/search/search.selector';
+import { selectAccount, selectType } from '../Store/Selectors/search.selector';
 import { SearchComponentService } from '../search-component/search-component.service';
-import { loadMoreSearchAccount } from '../states/search/search.actions';
+import { loadMoreSearchAccount } from '../Store/Actions/search.action';
 import { IonContent } from "@ionic/angular/standalone";
 
 @Component({

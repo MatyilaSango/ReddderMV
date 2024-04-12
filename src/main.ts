@@ -7,10 +7,10 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { provideState, provideStore } from '@ngrx/store';
-import { searchAccountReducer } from './app/states/search/search.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { bookmarkPostReducer } from './app/states/bookmark/bookmark.reducer';
-import { fullscreenPostReducer } from './app/states/fullscreenPost/fullscreenPost.reducer';
+import { bookmarkPostReducer } from './app/Store/Reducers/bookmark.reducer';
+import { fullscreenPostReducer } from './app/Store/Reducers/fullscreenPost.reducer';
+import { searchAccountReducer } from './app/Store/Reducers/search.reducer';
 
 if (environment.production) {
   enableProdMode();
@@ -26,5 +26,5 @@ bootstrapApplication(AppComponent, {
     provideState({ name: 'bookmarks', reducer: bookmarkPostReducer }),
     provideState({ name: 'fullscreenPost', reducer: fullscreenPostReducer }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
-],
+  ],
 });

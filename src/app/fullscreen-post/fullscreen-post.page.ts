@@ -5,11 +5,11 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 import { PostComponent } from "../post/post.component";
 import { Post } from '../types/types';
 import { Store } from '@ngrx/store';
-import { AppState } from '../states/App';
-import { selectPostOnFullscreen } from '../states/fullscreenPost/fullscreenPost.selector';
-import { selectData } from '../states/search/search.selector';
+import { AppState } from '../Store/App';
+import { selectPostOnFullscreen } from '../Store/Selectors/fullscreenPost.selector';
+import { selectData } from '../Store/Selectors/search.selector';
 import { PAGES } from '../enums/enums';
-import { selectBookmarkPosts } from '../states/bookmark/bookmark.selector';
+import { selectBookmarkPosts } from '../Store/Selectors/bookmark.selector';
 import { FullscreenPostService } from './fullscreen-post.service';
 
 

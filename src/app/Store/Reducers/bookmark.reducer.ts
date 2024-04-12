@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store"
-import { deletePost, savePost } from "./bookmark.action"
+import { deletePost, savePost } from "../Actions/bookmark.action"
 import { Post } from "src/app/types/types"
 import { STATES } from "src/app/enums/enums"
 

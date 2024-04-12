@@ -5,12 +5,12 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 import { HeaderComponent } from "../header/header.component";
 import { Post } from '../types/types';
 import { Store } from '@ngrx/store';
-import { AppState } from '../states/App';
-import { selectBookmarkPosts } from '../states/bookmark/bookmark.selector';
 import { Observable } from 'rxjs';
 import { PostComponent } from "../post/post.component";
 import { PostsContainerComponent } from "../posts-container/posts-container.component";
 import { PAGES } from '../enums/enums';
+import { AppState } from '../Store/App';
+import { selectBookmarkPosts } from '../Store/Selectors/bookmark.selector';
 
 @Component({
     selector: 'app-bookmarks',

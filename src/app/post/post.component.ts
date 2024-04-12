@@ -4,14 +4,14 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { ActionButtonComponent } from '../action-button/action-button.component';
 import { ActionSheetButton, Post } from '../types/types';
 import { Store } from '@ngrx/store';
-import { AppState } from '../states/App';
-import { deletePost, savePost } from '../states/bookmark/bookmark.action';
+import { AppState } from '../Store/App';
+import { deletePost, savePost } from '../Store/Actions/bookmark.action';
 import { personCircle, personOutline } from "ionicons/icons"
 import { addIcons } from 'ionicons';
 import { MEDIA, PAGES, URL_PAGES, VOLUME_ICON_NAMES } from '../enums/enums';
-import { addPostForFullscreenView } from '../states/fullscreenPost/fullscreenPost.action';
+import { addPostForFullscreenView } from '../Store/Actions/fullscreenPost.action';
 import { Router } from '@angular/router';
-import { selectAccount } from '../states/search/search.selector';
+import { selectAccount } from '../Store/Selectors/search.selector';
 
 @Component({
   selector: 'app-post',
