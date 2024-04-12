@@ -13,6 +13,7 @@ export class SearchComponentService {
   private userData: Post[];
   private isFound: boolean;
   private isFetchingData: boolean
+  private externalDomainSource: string = "https://www.reddit.com"
 
   constructor() {
     this.name = ""
@@ -75,7 +76,8 @@ export class SearchComponentService {
           title: data?.title,
           downs: data?.downs,
           author: data?.author,
-          thumbnail: data?.thumbnail
+          thumbnail: data?.thumbnail,
+          source: this.externalDomainSource + data?.permalink
         }
         this.userData = [...this.userData, postData];
       }
@@ -90,7 +92,8 @@ export class SearchComponentService {
               title: data?.title,
               downs: data?.downs,
               author: data?.author,
-              thumbnail: data?.thumbnail
+              thumbnail: data?.thumbnail,
+              source: this.externalDomainSource + data?.permalink
             }
             this.userData = [...this.userData, postData];
           }
@@ -103,7 +106,8 @@ export class SearchComponentService {
               title: data?.title,
               downs: data?.downs,
               author: data?.author,
-              thumbnail: data?.thumbnail
+              thumbnail: data?.thumbnail,
+              source: this.externalDomainSource + data?.permalink
             }
             this.userData = [...this.userData, postData]
           }

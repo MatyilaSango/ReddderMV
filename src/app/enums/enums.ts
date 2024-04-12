@@ -34,3 +34,8 @@ export const enum URL_PAGES {
     Bookmarks = "/tabs/" + PAGES.bookmarks,
     FullscreenPost = "/" + PAGES.fullscreenPost
 }
+
+export const enum ACTION_SHEETS {
+    Contributors = "contributors",
+    MoreOptions = "more-options"
+}

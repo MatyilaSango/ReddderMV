@@ -19,7 +19,7 @@
         <span class="font-medium text-sm ">
           {{post.author}}
         </span> &nbsp;&nbsp; <span class="opacity-70">with</span> &nbsp;&nbsp;
-        <span class="border h-fit rounded-xl px-2 text-xs flex items-center bg-black bg-opacity-20 opacity-80" (click)="handleActionSheet(true)">
+        <span class="border h-fit rounded-xl px-2 text-xs flex items-center bg-black bg-opacity-20 opacity-80" (click)="handleActionSheetVisibility('contributors')">
           <ion-icon class="scale-75" name="person-outline" size="small" />
           {{contributors.length}} people
         </span>
@@ -33,16 +33,25 @@
     <app-action-button iconName="play-circle" iconSize="large" />
   </div>
   <app-action-button *ngIf="post._type === 'video'" (click)="handleVideoAudioMute()" [iconName]="volumeIconName" iconSize="large" class="absolute top-2 left-2 size-5" />
+  <div class="absolute top-2 right-2 scale-90" (click)="handleActionSheetVisibility('more-options')">
+    <ion-icon name="options-outline" size="large" />
+  </div>
   <ion-toast
     [isOpen]="isToastOpen"
     [message]="toastMessage"
     [duration]="2000"
     (didDismiss)="handleHideToast()"
-  ></ion-toast>
+  />
   <ion-action-sheet
-    [isOpen]="isActionSheetOpen"
+    [isOpen]="isContributorsActionSheetOpen"
     header="Contributors"
-    [buttons]="actionSheetButtons"
-    (didDismiss)="handleActionSheet(false)"
-  ></ion-action-sheet>
+    [buttons]="actionSheetContributorsButtons"
+    (didDismiss)="handleActionSheetVisibility('contributors')"
+  />
+  <ion-action-sheet
+    [isOpen]="isMoreOptionsActionSheetOpen"
+    header="More Options"
+    [buttons]="actionSheetMoreOptionsButtons"
+    (didDismiss)="handleActionSheetVisibility('more-options')"
+  />
 </ion-card>

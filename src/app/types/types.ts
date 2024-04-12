@@ -14,12 +14,15 @@ export interface Post {
     author: string
     thumbnail: string
     pageFrom?: string
+    source: string
 }
 
 export interface ActionSheetButton {
     text: string;
+    icon?: string;
     role?: string;
     data?: {
         action: string
     }
+    handler?: () => void;
 }

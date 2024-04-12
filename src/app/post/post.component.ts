@@ -6,12 +6,13 @@ import { ActionSheetButton, Post } from '../types/types';
 import { Store } from '@ngrx/store';
 import { AppState } from '../Store/App';
 import { deletePost, savePost } from '../Store/Actions/bookmark.action';
-import { personCircle, personOutline } from "ionicons/icons"
+import { personCircle, personOutline, optionsOutline, linkOutline } from "ionicons/icons"
 import { addIcons } from 'ionicons';
-import { MEDIA, PAGES, URL_PAGES, VOLUME_ICON_NAMES } from '../enums/enums';
+import { ACTION_SHEETS, MEDIA, PAGES, URL_PAGES, VOLUME_ICON_NAMES } from '../enums/enums';
 import { addPostForFullscreenView } from '../Store/Actions/fullscreenPost.action';
 import { Router } from '@angular/router';
 import { selectAccount } from '../Store/Selectors/search.selector';
+import { Browser } from '@capacitor/browser';
 
 @Component({
   selector: 'app-post',
@@ -32,11 +33,13 @@ export class PostComponent {
   toastMessage: string;
   router: Router;
   contributors: string[];
-  actionSheetButtons: ActionSheetButton[];
-  isActionSheetOpen: boolean;
+  actionSheetContributorsButtons: ActionSheetButton[];
+  actionSheetMoreOptionsButtons: ActionSheetButton[];
+  isContributorsActionSheetOpen: boolean;
+  isMoreOptionsActionSheetOpen: boolean;
 
   constructor(private store: Store<AppState>) {  
-    addIcons({personCircle, personOutline}) 
+    addIcons({personCircle, personOutline, optionsOutline, linkOutline}) 
     this.playing = false;
     this.isMuted = false;
     this.volumeIconName = "volume-high"
@@ -44,8 +47,10 @@ export class PostComponent {
     this.toastMessage = ""
     this.router = new Router()
     this.contributors = []
-    this.actionSheetButtons = []
-    this.isActionSheetOpen = false
+    this.actionSheetContributorsButtons = []
+    this.actionSheetMoreOptionsButtons = []
+    this.isContributorsActionSheetOpen = false
+    this.isMoreOptionsActionSheetOpen = false
   }
 
   handleElementOnLoaded(e: Event){
@@ -63,10 +68,19 @@ export class PostComponent {
     })
 
     this.contributors.forEach(contributor => {
-      this.actionSheetButtons.push({
-        text: contributor
+      this.actionSheetContributorsButtons.push({
+        text: contributor,
+        icon: "person-outline"
       })
     })
+
+    this.actionSheetMoreOptionsButtons = [
+      {
+        text: "Source",
+        icon: "link-outline",
+        handler: async () => await Browser.open({url: this.post.source})
+      }
+    ]
   }
 
   handlePlay(){
@@ -111,8 +125,19 @@ export class PostComponent {
     this.isToastOpen = false
   }
 
-  handleActionSheet(value: boolean){
-    this.isActionSheetOpen = value
+  handleActionSheetVisibility(sheet: string){
+    switch(sheet){
+      case ACTION_SHEETS.Contributors:
+        this.isContributorsActionSheetOpen = !this.isContributorsActionSheetOpen;
+        break;
+
+      case ACTION_SHEETS.MoreOptions:
+        this.isMoreOptionsActionSheetOpen = !this.isMoreOptionsActionSheetOpen;
+        break;
+    }
+  }
+
+  handleActionSheet(){
   }
 
   toFullScreen(){

@@ -1,7 +1,7 @@
 {
   "name": "ReddderMV",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "Sango",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
@@ -23,6 +23,7 @@
     "@angular/router": "^17.0.2",
     "@capacitor/android": "5.7.4",
     "@capacitor/app": "5.0.7",
+    "@capacitor/browser": "^5.2.0",
     "@capacitor/core": "5.7.4",
     "@capacitor/haptics": "5.0.7",
     "@capacitor/keyboard": "5.0.8",
