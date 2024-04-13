@@ -6,7 +6,7 @@ import { ActionSheetButton, Post } from '../types/types';
 import { Store } from '@ngrx/store';
 import { AppState } from '../Store/App';
 import { deletePost, savePost } from '../Store/Actions/bookmark.action';
-import { personCircle, personOutline, optionsOutline, linkOutline } from "ionicons/icons"
+import { personCircle, personOutline, linkOutline } from "ionicons/icons"
 import { addIcons } from 'ionicons';
 import { ACTION_SHEETS, MEDIA, PAGES, URL_PAGES, VOLUME_ICON_NAMES } from '../enums/enums';
 import { addPostForFullscreenView } from '../Store/Actions/fullscreenPost.action';
@@ -37,9 +37,10 @@ export class PostComponent {
   actionSheetMoreOptionsButtons: ActionSheetButton[];
   isContributorsActionSheetOpen: boolean;
   isMoreOptionsActionSheetOpen: boolean;
+  isFullscreen: boolean;
 
   constructor(private store: Store<AppState>) {  
-    addIcons({personCircle, personOutline, optionsOutline, linkOutline}) 
+    addIcons({personCircle, personOutline, linkOutline}) 
     this.playing = false;
     this.isMuted = false;
     this.volumeIconName = "volume-high"
@@ -51,6 +52,7 @@ export class PostComponent {
     this.actionSheetMoreOptionsButtons = []
     this.isContributorsActionSheetOpen = false
     this.isMoreOptionsActionSheetOpen = false
+    this.isFullscreen = false
   }
 
   handleElementOnLoaded(e: Event){
@@ -81,6 +83,8 @@ export class PostComponent {
         handler: async () => await Browser.open({url: this.post.source})
       }
     ]
+
+    this.isFullscreen = this.currentPage === PAGES.fullscreenPost
   }
 
   handlePlay(){
@@ -108,6 +112,11 @@ export class PostComponent {
   bookmarkPost(){
     switch(this.currentPage){
       case PAGES.home:
+        this.store.dispatch(savePost(this.post))
+        this.toastMessage = "Post saved!"
+        break;
+
+      case PAGES.fullscreenPost:
         this.store.dispatch(savePost(this.post))
         this.toastMessage = "Post saved!"
         break;

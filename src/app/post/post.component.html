@@ -1,20 +1,22 @@
-<ion-card class="relative min-h-[400px] h-full bg-black flex items-center border-y border-zinc-800 m-0">
-  <video (loadeddata)="handleElementOnLoaded($event)" (click)="handlePlay()" class="w-full" *ngIf="post._type === 'video'" alt="" [poster]="post.thumbnail">
-    <source [src]="post.link" type="video/mp4">
-  </video>
-  <img class="w-full" *ngIf="post._type === 'image'" alt="" [src]="post.link" (load)="handleElementOnLoaded($event)" />
-  <img class="w-full" *ngIf="post._type === 'gif'" alt="" [src]="post.thumbnail" (load)="handleElementOnLoaded($event)" (click)="handlePlay()"/>
-  <div class="absolute bottom-0 left-0 w-full pointer-events-none">
-    <div class="w-full flex justify-end">
-      <div class="w-8 grid grid-cols-1 justify-center pointer-events-auto">
-        <app-action-button class="scale-90" iconName="thumbs-up-outline" iconSize="large" [text]="post.ups" />
-        <app-action-button class="scale-90" iconName="thumbs-down-outline" iconSize="large" [text]="post.downs"/>
-        <app-action-button class="scale-90" iconName="bookmark-outline" iconSize="large" (click)="bookmarkPost()"/>
-        <app-action-button class="scale-90" iconName="expand-outline" iconSize="large" (click)="toFullScreen()"/>
+<ion-card [class.fullScreen]="isFullscreen" class="relative min-h-[400px] bg-transparent flex items-center border-y border-zinc-800 m-0">
+  <div [class.fullScreenCenter]="isFullscreen" class="h-full grid grid-cols-1 justify-between gap-2">
+    <video (loadeddata)="handleElementOnLoaded($event)" (click)="handlePlay()" class="w-full" *ngIf="post._type === 'video'" alt="" [poster]="post.thumbnail">
+      <source [src]="post.link" type="video/mp4">
+    </video>
+    <img class="w-full" *ngIf="post._type === 'image'" alt="" [src]="post.link" (load)="handleElementOnLoaded($event)" />
+    <img class="w-full" *ngIf="post._type === 'gif'" alt="" [src]="post.thumbnail" (load)="handleElementOnLoaded($event)" (click)="handlePlay()"/>
+    <div [class.fullScreenPostDetBottom]="isFullscreen" class="w-full h-fit p-2 pt-0 grid grid-cols-1 gap-2 relative">
+      <div class="absolute bottom-full left-0 w-full pointer-events-none">
+        <div class="w-full flex justify-end">
+          <div class="w-8 grid gap-2 grid-cols-1 justify-center pointer-events-auto">
+            <app-action-button iconName="thumbs-up-outline" iconSize="large" [text]="post.ups" />
+            <app-action-button iconName="thumbs-down-outline" iconSize="large" [text]="post.downs"/>
+            <app-action-button iconName="bookmark-outline" iconSize="large" (click)="bookmarkPost()"/>
+            <app-action-button iconName="expand-outline" iconSize="large" (click)="toFullScreen()"/>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="w-full bg-gradient-to-t from-black to-transparent p-2 pt-0 grid grid-cols-1 gap-2">
-      <div class="text-white flex items-center pointer-events-auto">
+      <div [class.fullScreenColor]="isFullscreen" class="text-color flex items-center pointer-events-auto">
         <ion-icon name="person-circle" size="small" />
         <span class="font-medium text-sm ">
           {{post.author}}
@@ -24,17 +26,19 @@
           {{contributors.length}} people
         </span>
       </div>
-      <p class="text-sm">
-        {{post.title}}
-      </p>
+      <div class="text-sm">
+        <ion-text>
+          {{post.title}}
+        </ion-text> 
+      </div>
     </div>
   </div>
   <div *ngIf="post._type === 'video' || post._type === 'gif'" (click)="handlePlay()" [class.playing]="playing" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14">
     <app-action-button iconName="play-circle" iconSize="large" />
   </div>
   <app-action-button *ngIf="post._type === 'video'" (click)="handleVideoAudioMute()" [iconName]="volumeIconName" iconSize="large" class="absolute top-2 left-2 size-5" />
-  <div class="absolute top-2 right-2 scale-90" (click)="handleActionSheetVisibility('more-options')">
-    <ion-icon name="options-outline" size="large" />
+  <div class="absolute size-8 top-2 right-2">
+    <app-action-button class="scale-90" iconName="options-outline" iconSize="large" (click)="handleActionSheetVisibility('more-options')"/>
   </div>
   <ion-toast
     [isOpen]="isToastOpen"

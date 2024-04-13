@@ -1,0 +1,9 @@
+#logo{
+    content: url("../../assets/Reddder-light-mode.png");
+}
+
+@media (prefers-color-scheme: dark){
+    #logo{
+        content: url("../../assets/Reddder-dark-mode.png");
+    }
+}

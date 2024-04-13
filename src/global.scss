@@ -32,3 +32,13 @@
 *{
     user-select: none;
 }
+
+.text-color{
+    color: black;
+}
+
+@media (prefers-color-scheme: dark){
+    .text-color{
+        color: white;
+    }
+}

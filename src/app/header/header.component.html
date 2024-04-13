@@ -1,13 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <div class="flex justify-center">
-      <img alt="logo" src="../../assets/Reddder.png" class="h-4" />
+    <div class="flex justify-start px-2">
+      <img id="logo" alt="logo" class="h-4" />
     </div>
   </ion-toolbar>
-  <div *ngIf="account" class="py-1 px-2 bg-zinc-800 flex items-center opacity-50">
+  <div *ngIf="account" class="py-1 px-2 flex items-center">
     <ion-icon name="person-sharp" size="small" /> 
     <span>&ensp;-</span>
-    <ion-text class="text-sm text-white">
+    <ion-text class="text-sm text-color">
       {{type | async}}/{{account | async}}
     </ion-text>
   </div>

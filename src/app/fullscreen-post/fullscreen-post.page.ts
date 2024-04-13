@@ -22,6 +22,7 @@ import { FullscreenPostService } from './fullscreen-post.service';
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class FullscreenPostPage {
+  currentPage: string = PAGES.fullscreenPost;
   post: Post = {} as Post;
   posts: Post[] = [];
 

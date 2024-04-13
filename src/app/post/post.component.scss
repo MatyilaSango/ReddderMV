@@ -1,3 +1,22 @@
 .playing {
     display: none;
 }
+
+.fullScreen {
+    height: 100%;
+    background-color: black;
+}
+
+.fullScreenCenter{
+    display: flex;
+    align-items: center;
+}
+
+.fullScreenPostDetBottom{
+    position: absolute;
+    bottom: 0;
+}
+
+.fullScreenColor{
+    color: white;
+}

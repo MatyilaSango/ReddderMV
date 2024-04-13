@@ -1,7 +1,7 @@
 <ion-card class="bg-transparent">
-  <div class="h-12 border-b">
+  <div class="h-12">
     <form (submit)="handleSubmit($event)" class="h-full flex items-center bg-transparent">
-      <ion-searchbar (ionInput)="handleInput($event)" name="name" class="h-full w-full pl-0 text-sm outline-none border-none text-white" type="text" placeholder="Search..." required />
+      <ion-searchbar (ionInput)="handleInput($event)" name="name" class="h-full w-full pl-0 text-sm outline-none border-none" type="text" placeholder="Search..." required />
       <ion-list>
         <ion-item>
           <ion-select label="Type" [(ngModel)]="type" name="type" class="bg-transparent text-sm">
