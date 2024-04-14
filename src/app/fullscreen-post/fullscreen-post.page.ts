@@ -7,7 +7,7 @@ import { Post } from '../types/types';
 import { Store } from '@ngrx/store';
 import { AppState } from '../Store/App';
 import { selectPostOnFullscreen } from '../Store/Selectors/fullscreenPost.selector';
-import { selectData } from '../Store/Selectors/search.selector';
+import { selectData } from '../Store/Selectors/account.selector';
 import { PAGES } from '../enums/enums';
 import { selectBookmarkPosts } from '../Store/Selectors/bookmark.selector';
 import { FullscreenPostService } from './fullscreen-post.service';

@@ -11,7 +11,7 @@ import { addIcons } from 'ionicons';
 import { ACTION_SHEETS, MEDIA, PAGES, URL_PAGES, VOLUME_ICON_NAMES } from '../enums/enums';
 import { addPostForFullscreenView } from '../Store/Actions/fullscreenPost.action';
 import { Router } from '@angular/router';
-import { selectAccount } from '../Store/Selectors/search.selector';
+import { selectAccount } from '../Store/Selectors/account.selector';
 import { Browser } from '@capacitor/browser';
 
 @Component({

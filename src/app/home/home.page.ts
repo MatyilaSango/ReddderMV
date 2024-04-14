@@ -3,7 +3,7 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonText, IonIcon 
 import { Observable } from 'rxjs';
 import { AppState } from '../Store/App';
 import { Store } from '@ngrx/store';
-import { selectAccount, selectData, selectType } from '../Store/Selectors/search.selector';
+import { selectAccount, selectData, selectType } from '../Store/Selectors/account.selector';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { PostComponent } from '../post/post.component';
 import { HeaderComponent } from "../header/header.component";
