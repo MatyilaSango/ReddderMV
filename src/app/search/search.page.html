@@ -1,6 +1,14 @@
+<app-header />
+<app-search-component />
 <div class="h-screen">
-  <app-header />
-  <div class="page-view">
-    <app-search-component />
-  </div>
+    <ion-content>
+      <ion-list>
+        <ion-item *ngFor="let account of searchedAccounts" (click)="handleAccount(account.name, account.type_)">
+          <ion-text class="text-color flex justify-between w-full">
+            {{account.name}}
+            <span class="opacity-50">{{account.type_}}</span>
+          </ion-text>
+        </ion-item>
+      </ion-list>
+    </ion-content>
 </div>
