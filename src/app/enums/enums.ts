@@ -23,9 +23,10 @@ export const enum TOAST_MESSAGES {
 
 export const enum STATES {
     AppState = "AppState",
-    searchAccount = "searchAccount",
+    account = "account",
     bookmarks = "bookmarks",
-    fullscreenPost = "fullscreenPost"
+    fullscreenPost = "fullscreenPost",
+    searchAccounts = "searchAccounts"
 }
 
 export const enum URL_PAGES {

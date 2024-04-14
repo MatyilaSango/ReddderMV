@@ -10,7 +10,8 @@ import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { bookmarkPostReducer } from './app/Store/Reducers/bookmark.reducer';
 import { fullscreenPostReducer } from './app/Store/Reducers/fullscreenPost.reducer';
-import { searchAccountReducer } from './app/Store/Reducers/search.reducer';
+import { accountReducer } from './app/Store/Reducers/account.reducer';
+import { searchAccountsReducer } from './app/Store/Reducers/search.reducer';
 
 if (environment.production) {
   enableProdMode();
@@ -22,9 +23,10 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     provideRouter(routes),
     provideStore(),
-    provideState({ name: 'searchAccount', reducer: searchAccountReducer }),
+    provideState({ name: 'account', reducer: accountReducer }),
     provideState({ name: 'bookmarks', reducer: bookmarkPostReducer }),
     provideState({ name: 'fullscreenPost', reducer: fullscreenPostReducer }),
+    provideState({ name: 'searchAccounts', reducer: searchAccountsReducer}),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
   ],
 });

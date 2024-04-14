@@ -1,28 +1,17 @@
 import { createReducer, on } from "@ngrx/store"
-import { SearchAccountState } from "../../types/types"
-import { loadMoreSearchAccount, storeSearchAccount } from "../Actions/search.action"
+import { SearchAccount } from "../../types/types"
 import { STATES } from "src/app/enums/enums"
+import { storeSearchedAccountsFound } from "../Actions/search.action"
 
-const initialSearchAccountState: SearchAccountState = JSON.parse(localStorage.getItem(STATES.searchAccount) as string) || {
-    name: "",
-    type_: "",
-    data: []
+const initialAccount: SearchAccount = JSON.parse(localStorage.getItem(STATES.searchAccounts) as string) || {
+    accounts: []
 }
 
-export const searchAccountReducer = createReducer(
-    initialSearchAccountState,
-    on(storeSearchAccount, (state: SearchAccountState, payload) => {
-        const newState = {...state, name: payload.name, type_: payload.type_, data: payload.data}
-        localStorage.setItem(STATES.searchAccount, JSON.stringify(newState))
-        return newState
-    }),
-    on(loadMoreSearchAccount, (state: SearchAccountState, payload) => {
-        let newData = [...state.data]
-        payload.data.forEach(post => {
-            if(!JSON.stringify(newData).includes(post.link)) newData.push(post)
-        })
-        const newState = {...state, data: newData}
-        localStorage.setItem(STATES.searchAccount, JSON.stringify(newState))
+export const searchAccountsReducer = createReducer(
+    initialAccount,
+    on(storeSearchedAccountsFound, (state: SearchAccount, payload) => {
+        const newState: SearchAccount = {...state, accounts: payload.accounts}
+        localStorage.setItem(STATES.searchAccounts, JSON.stringify(newState))
         return newState
     })
 )

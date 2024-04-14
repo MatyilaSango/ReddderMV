@@ -3,10 +3,10 @@ import { deletePost, savePost } from "../Actions/bookmark.action"
 import { Post } from "src/app/types/types"
 import { STATES } from "src/app/enums/enums"
 
-const initalBookmark: Post[] = JSON.parse(localStorage.getItem(STATES.bookmarks) as string) || []
+const initialBookmark: Post[] = JSON.parse(localStorage.getItem(STATES.bookmarks) as string) || []
 
 export const bookmarkPostReducer = createReducer(
-    initalBookmark,
+    initialBookmark,
     on(savePost, (state: Post[], payload: Post) => {
         const bookmarks = !JSON.stringify(state).includes(JSON.stringify(payload)) ? [payload, ...state] : [...state]
         localStorage.setItem(STATES.bookmarks, JSON.stringify(bookmarks))

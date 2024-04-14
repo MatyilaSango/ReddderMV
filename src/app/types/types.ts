@@ -1,6 +1,13 @@
-export interface SearchAccountState {
+export interface User {
     name: string;
     type_: string;
+}
+
+export interface SearchAccount {
+    accounts: User[]
+}
+
+export interface Account extends User{
     data: Post[];
     isFound: boolean;
 }
