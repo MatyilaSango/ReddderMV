@@ -12,6 +12,7 @@ import { personSharp } from "ionicons/icons"
 import { addIcons } from 'ionicons';
 import { PostsContainerComponent } from "../posts-container/posts-container.component";
 import { PAGES } from '../enums/enums';
+import { selectTabMenuVissibility } from '../Store/Selectors/tab.selector';
 
 @Component({
     selector: 'app-home',
@@ -25,11 +26,13 @@ export class HomePage {
   account: Observable<string>
   type: Observable<string>
   currentPage: string = PAGES.home
+  isScrollingUp: Observable<boolean>
   
   constructor(private store: Store<AppState>) {
     addIcons({ personSharp })
     this.posts$ = this.store.select(selectData)
     this.account = this.store.select(selectAccount)
     this.type = this.store.select(selectType)
+    this.isScrollingUp = this.store.select(selectTabMenuVissibility)
   }
 }

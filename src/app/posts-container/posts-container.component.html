@@ -1,4 +1,4 @@
-<ion-content [scrollEvents]="true" (ionScrollEnd)="HandleLoadMorePosts()">
+<ion-content [scrollEvents]="true" (ionScroll)="HandleLoadMorePosts()">
   <app-post *ngFor="let post$ of posts$ | async" [post]="post$" [currentPage]="currentPage" />
   <div class="flex justify-center text-xs">
     <ion-button class="scale-75" (click)="HandleLoadMorePosts(true)">Load more</ion-button>

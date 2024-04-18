@@ -1,5 +1,5 @@
 <ion-tabs>
-  <ion-tab-bar slot="bottom">
+  <ion-tab-bar slot="bottom" class="relative hidden duration-500" [class.shouldShowMenu]="shouldShowMenu | async">
     <ion-tab-button tab="home">
       <ion-icon name="home"></ion-icon>
       Home

@@ -11,6 +11,7 @@ import { selectAccount, selectType } from '../Store/Selectors/account.selector';
 import { IonContent, IonButton } from "@ionic/angular/standalone";
 import { SearchService } from '../search/search.service';
 import { loadMoreAccount } from '../Store/Actions/account.action';
+import { storeTabMuneVissibilityAction } from '../Store/Actions/tab.action';
 
 @Component({
     selector: 'app-posts-container',
@@ -29,6 +30,8 @@ export class PostsContainerComponent {
   account: string = ""
   type: string = ""
   searchService = inject(SearchService);
+  lastScrollTop: number = 0;
+  isScrollDirectionUp: boolean;
 
   constructor(private store: Store<AppState>) { 
     this.isLoadingMore = false
@@ -39,12 +42,21 @@ export class PostsContainerComponent {
     this.store.select(selectType).forEach(type => {
       this.type = type
     })
+    this.isScrollDirectionUp = false
   }
 
   async HandleLoadMorePosts(forceloadMore?: boolean) {
     const contentScollElement = await this.content.getScrollElement()
     const scrollHeight = contentScollElement.scrollHeight
-    const scrollTop = contentScollElement.scrollTop + contentScollElement.clientHeight
+    const scrollTop = contentScollElement.scrollTop + contentScollElement.clientHeight;
+    if(this.lastScrollTop > scrollTop && !this.isScrollDirectionUp){
+      this.isScrollDirectionUp = true
+      this.store.dispatch(storeTabMuneVissibilityAction({vissibility: this.isScrollDirectionUp}))
+    } else if (this.lastScrollTop <= scrollTop && this.isScrollDirectionUp){
+      this.isScrollDirectionUp = false
+      this.store.dispatch(storeTabMuneVissibilityAction({vissibility: this.isScrollDirectionUp}))
+    }
+    this.lastScrollTop = scrollTop;
     if((scrollHeight === scrollTop || forceloadMore) && (this.router.url === URL_PAGES.Home)){
       this.isLoadingMore = true
       const data = await this.searchService.getData(this.account, this.type)

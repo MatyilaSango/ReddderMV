@@ -33,3 +33,7 @@ export interface ActionSheetButton {
     }
     handler?: () => void;
 }
+
+export interface Tab {
+    menuVisibility: boolean
+}
